@@ -1,0 +1,7 @@
+**/App.vue
+**/Views/Lista/ListaPage.vue
+**/Views/Login/LoginPage.vue
+**/main.js
+**/router/index.js
+**/stores/index.js
+**/Views/Descricao/DescricaoPage.vue
