@@ -12,6 +12,11 @@ const routes = [
         name: 'lista',
         component: () => import('@/Views/Lista/ListaPage.vue'),
     },
+    {
+        path: '/descricao/:id',
+        name: 'descricao',
+        component: () => import('@/Views/Descricao/DescricaoPage.vue'),
+    }
 ];
 
 const router = createRouter({
