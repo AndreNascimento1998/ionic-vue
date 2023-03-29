@@ -48,12 +48,11 @@ const store = useGlobal()
 const email = ref('')
 const senha = ref('')
 
-const users = computed(() => store.users)
+const users = store.users
 
 function valida(){
-    debugger
-    const temp = users.value
-    const filtraId = temp.filter( (user) => email.value == user.email)
+
+    const filtraId = users.value.filter( (user) => email.value == user.email)
     if(filtraId[0]?.senha == senha.value){
         router.push('/lista')
     }else {
