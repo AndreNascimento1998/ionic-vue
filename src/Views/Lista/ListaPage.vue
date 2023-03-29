@@ -11,10 +11,10 @@
 </template>
 
 <script setup>
-import { useCounterStore } from '@/stores';
+import { useGlobal } from '@/stores';
 import { computed } from 'vue'
 
-const store = useCounterStore()
+const store = useGlobal()
 const count = computed(() => store.count)
 
 </script>
