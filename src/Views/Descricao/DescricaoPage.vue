@@ -22,14 +22,16 @@
                 </ion-card-content>
             </ion-col>
         </ion-row>
+        <ion-button size="small" @click="voltarPagina">Voltar</ion-button>
     </ion-card>
 </template>
 
 
 <script setup>
-import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol } from '@ionic/vue';
+import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol } from '@ionic/vue';
 import { useGlobal } from '@/stores'
 import { useRoute } from 'vue-router'
+import router from '@/router';
 
 const store = useGlobal()
 
@@ -37,6 +39,11 @@ const route = useRoute()
 const userId = route.params.id
 
 const usuario = store.users.find(user => user.id == userId)
+
+function voltarPagina() {
+    router.push('/lista')
+}
+
 </script>
 
 <style scoped>

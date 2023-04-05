@@ -5,9 +5,7 @@
                 <ion-title>Login</ion-title>
             </ion-toolbar>
         </ion-header>
-
         <ion-content>
-            
                 <ion-row class="margin-top">
                     <ion-col size-md="3" offset-md="4" size="8" offset="2">
                         <ion-item >
@@ -51,9 +49,9 @@ const senha = ref('')
 const users = store.users
 
 function valida(){
-
-    const filtraId = users.value.filter( (user) => email.value == user.email)
+    const filtraId = users.filter( (user) => email.value == user.email)
     if(filtraId[0]?.senha == senha.value){
+        store.logado = true
         router.push('/lista')
     }else {
         alert('Senha ou email inválidos')

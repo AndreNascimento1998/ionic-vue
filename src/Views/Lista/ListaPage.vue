@@ -1,11 +1,6 @@
 <template>
     <div>
-        <ion-header>
-            <ion-toolbar color="primary">
-                <ion-title>Lista de usuários</ion-title>
-            </ion-toolbar>
-        </ion-header>
-        <ion-row>
+        <ion-row v-if="logadoLista">
             <ion-col size="6" offset="3">
                 <ion-list>
                     <ion-item v-for="user in store.users" :key="user.id" @click="showMessage(user)">
@@ -14,6 +9,11 @@
                         <ion-button size="small" @click="descricao(user)">Detalhes</ion-button>
                     </ion-item>
                 </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row v-else>
+            <ion-col size="6" offset="3">
+                <h1>Bem-vindo a nossa página logue ou cadastra-se para ver a lista !</h1>
             </ion-col>
         </ion-row>
     </div>
@@ -43,11 +43,8 @@ import router from '@/router';
 import { Toast } from '@capacitor/toast'
 
 const store = useGlobal()
-const users = ref([
-    { id: 1, name: 'João', email: 'joao@example.com' },
-    { id: 2, name: 'Maria', email: 'maria@example.com' },
-    { id: 3, name: 'Pedro', email: 'pedro@example.com' },
-])
+
+const logadoLista = computed(() => store.logado)
 
 function descricao(usuario) {
     router.push(`/descricao/${usuario.id}`)
@@ -71,6 +68,6 @@ async function showMessage(user) {
  }
 
  ion-item {
-     cursor: pointer;
+    cursor: pointer;
  }
 </style>

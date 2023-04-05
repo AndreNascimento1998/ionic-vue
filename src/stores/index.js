@@ -49,6 +49,7 @@ export const useGlobal = defineStore('global', {
                 telefone: '8798-0100'
             }
         ],
+        logado: false,
         count: 0
     }),
     actions: {

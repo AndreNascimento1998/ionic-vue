@@ -5,3 +5,5 @@
 **/router/index.js
 **/stores/index.js
 **/Views/Descricao/DescricaoPage.vue
+**/Views/Menu/Menu.vue
+**/Views/Cadastro/Cadastro.vue
