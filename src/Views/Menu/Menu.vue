@@ -20,7 +20,7 @@
             <ion-buttons slot="start">
                 <ion-menu-button />
             </ion-buttons>
-            <ion-title>André corporation</ion-title>
+            <ion-title>André Restaurante</ion-title>
         </ion-toolbar>
     </ion-header>
 
@@ -42,8 +42,8 @@ const itensRenderizado = reactive([
         icon: home,
     },
     {
-        nome: 'Cadastro',
-        rota: '/cadastro',
+        nome: 'Cardapio',
+        rota: '/cardapio',
         icon: people,
     },
     {
