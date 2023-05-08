@@ -3,31 +3,36 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/Views/Login/LoginPage.vue'),
-    },
-    {
         path: '/',
         name: 'home',
         component: () => import('@/Views/Menu/Menu.vue'),
         meta: { requiresAuth: true },
         children: [
             {
-                path: '/lista',
-                name: 'lista',
-                component: () => import('@/Views/Lista/ListaPage.vue'),
+                path: '/cardapio',
+                name: 'cardapio',
+                component: () => import('@/Views/Cardapio/CardapioPage.vue'),
             },
             {
-                path: '/descricao/:id',
-                name: 'descricao',
-                component: () => import('@/Views/Descricao/DescricaoPage.vue'),
+                path: '/lanche',
+                name: 'lanche',
+                component: () => import('@/Views/Cardapio/Pratos/LanchePage.vue')
             },
             {
-                path: '/cadastro',
-                name: 'cadastro',
-                component: () => import('@/Views/Cadastro/Cadastro.vue'),
+                path: '/refeicao',
+                name: 'refeicao',
+                component: () => import('@/Views/Cardapio/Pratos/RefeicaoPage.vue')
             },
+            {
+                path: '/sobremesa',
+                name: 'sobremesa',
+                component: () => import('@/Views/Cardapio/Pratos/SobremesaPage.vue')
+            },
+            {
+                path: '/bebida',
+                name: 'bebida',
+                component: () => import('@/Views/Cardapio/Pratos/BebidaPage.vue')
+            }
         ]
     },
 ];
