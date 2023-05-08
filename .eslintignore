@@ -7,3 +7,8 @@
 **/Views/Descricao/DescricaoPage.vue
 **/Views/Menu/Menu.vue
 **/Views/Cadastro/Cadastro.vue
+**/Views/Cardapio/CardapioPage.vue
+**/Views/Cardapio/Pratos/LanchePage.vue
+**/Views/Cardapio/Pratos/RefeicaoPage.vue
+**/Views/Cardapio/Pratos/SobremesaPage.vue
+**/Views/Cardapio/Pratos/BebidaPage.vue
