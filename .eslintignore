@@ -6,6 +6,7 @@
 **/stores/index.js
 **/Views/Descricao/DescricaoPage.vue
 **/Views/Menu/Menu.vue
+**/Views/Menu/Initial.vue
 **/Views/Cadastro/Cadastro.vue
 **/Views/Cardapio/CardapioPage.vue
 **/Views/Cardapio/Pratos/LanchePage.vue
