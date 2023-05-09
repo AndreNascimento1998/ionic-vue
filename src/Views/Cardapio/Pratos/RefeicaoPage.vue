@@ -3,34 +3,18 @@
         <ion-col size="10" offset="1">
             <h2>Pratos de entrada e pratos de refeição</h2>
             <ion-list>
-                <ion-item >
+                <ion-item v-for="item in refeicao" :key="item.id">
                     <div class="linha">
-                        <ion-img src="https://pubimg.band.uol.com.br/files/2d01253c8d13c7582a11.png" class="tamanho"/>
-                        <h4 class="margem-esquerda">Estrogonofe de carne</h4>
+                        <ion-img :src="item.src" class="tamanho"/>
+                        <h4 class="margem-esquerda">{{ item.nome }}</h4>
                     </div>
+                    <ion-col>
+                    </ion-col>
+                    <ion-button size="small" @click="adicionar(item)">Adicionar</ion-button>
+                    <ion-button class="margem-direita" size="small" @click="remover(item)">Remover</ion-button>
+                    <h5 class="margem-direita">Itens Selecionada: {{ item.qnt }}</h5>
+                    <h4 class="margem-final">Preço: R$ {{ item.preco.toFixed(2) }}</h4>
                 </ion-item>
-                
-                <ion-item >
-                    <div class="linha">
-                        <ion-img src="https://s2.glbimg.com/ajGTiNj2FxByx96WP-01zz-wW4k=/e.glbimg.com/og/ed/f/original/2021/03/16/galinhada_camil.jpg" class="tamanho"/>
-                        <h4 class="margem-esquerda">Galinhada</h4>
-                    </div>
-                </ion-item>
-    
-                <ion-item >
-                    <div class="linha">
-                        <ion-img src="https://i0.statig.com.br/bancodeimagens/2m/x8/6n/2mx86nv7kxv8cybegti6zvw0t.jpg" class="tamanho"/>
-                        <h4 class="margem-esquerda">Feijoada</h4>
-                    </div>
-                </ion-item>
-    
-                <ion-item >
-                    <div class="linha">
-                        <ion-img src="https://simplelivingrecipes.com/wp-content/uploads/2019/06/Feijao-Tropeiro-1.jpeg" class="tamanho"/>
-                        <h4 class="margem-esquerda">Feijão tropeiro</h4>
-                    </div>
-                </ion-item>
-    
             </ion-list>
             <ion-button class="alinhamento-direita" size="small" @click="() => router.push('/cardapio')">Voltar</ion-button>
         </ion-col>
@@ -39,7 +23,42 @@
 
 <script setup>
 import router from "@/router";
+import { useGlobal } from "@/stores";
 import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol,IonList, IonImg, IonItem} from '@ionic/vue';
+import { computed, ref } from "vue";
+
+let soma = ref(0)
+
+const globalStore = useGlobal()
+
+const refeicao = computed(() => globalStore.refeicao)
+
+function adicionar(item) {
+    soma.value += item.preco
+    globalStore.refeicao.find( refeicao => {
+        if(refeicao.id === item.id){
+            return item.qnt += 1
+        }
+    })
+    console.log(soma.value)
+}
+
+function remover(item) {
+    if(item.qnt > 0){
+        soma.value -= item.preco
+        if(soma.value >= 0){
+            console.log(soma.value)
+            globalStore.refeicao.find( refeicao => {
+            if(refeicao.id === item.id){
+                return item.qnt -= 1
+            }
+        })
+        }else {
+            soma.value = 0
+            console.log(soma.value)
+        }
+    }
+}
 
 </script>
 
@@ -58,6 +77,14 @@ import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCa
 .linha {
     display: flex !important;
     padding: 8px;
+}
+
+.margem-direita {
+    margin-right: 20px;
+}
+
+.margem-final {
+    align-items: center !important;
 }
 
 .margem-esquerda{

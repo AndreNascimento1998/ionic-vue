@@ -2,62 +2,45 @@ import { defineStore } from 'pinia'
 
 export const useGlobal = defineStore('global', {
     state: () => ({
-        users: [
+        refeicao: [
             {
                 id: 1,
-                email: 'andre@hotmail.com',
-                senha: '12345',
-                nome: 'André',
-                rua: 'vasco teste limeira',
-                estado: 'Goiás',
-                telefone: '4578-1545'
+                nome: 'Estrogonofe de Carne',
+                preco: 37.50,
+                src: 'https://pubimg.band.uol.com.br/files/2d01253c8d13c7582a11.png',
+                qnt: 0
             },
+
             {
                 id: 2,
-                email: 'lucia@user.com',
-                senha: 'abcd',
-                nome: 'Lúcia',
-                rua: 'isco silveira quinto',
-                estado: 'Rio de Janeiro',
-                telefone: '7889-4545'
+                nome: 'Galinhada',
+                preco: 34.00,
+                src: 'https://s2.glbimg.com/ajGTiNj2FxByx96WP-01zz-wW4k=/e.glbimg.com/og/ed/f/original/2021/03/16/galinhada_camil.jpg',
+                qnt: 0
             },
             {
                 id: 3,
-                email: 'tiago@user.com',
-                senha: 'teste123',
-                nome: 'Tiago',
-                rua: 'avenida quinta amaro',
-                estado: 'Goiás',
-                telefone: '8901-3245'
+                nome: 'Feijoada',
+                preco: 35.00,
+                src: 'https://i0.statig.com.br/bancodeimagens/2m/x8/6n/2mx86nv7kxv8cybegti6zvw0t.jpg',
+                qnt: 0
             },
             {
                 id: 4,
-                email: 'manu@user.com',
-                senha: 'abc123',
-                nome: 'Manuela',
-                rua: 'primeira alves pio',
-                estado: 'Acre',
-                telefone: '9015-3015'
+                nome: 'Feijão Tropeiro',
+                preco: 32.00,
+                src: 'https://simplelivingrecipes.com/wp-content/uploads/2019/06/Feijao-Tropeiro-1.jpeg',
+                qnt: 0
             },
             {
                 id: 5,
-                email: 'silva@user.com',
-                senha: 'silva123',
-                nome: 'Silveira',
-                rua: 'alameda do norte',
-                estado: 'São Paulo',
-                telefone: '8798-0100'
+                nome: 'Arroz com suan',
+                preco: 36.90,
+                src: 'https://pubimg.band.uol.com.br/files/517dce50af62efdd4871.png',
+                qnt: 0
             }
         ],
-        logado: false,
-        count: 0
+
+        
     }),
-    actions: {
-        increment() {
-            this.count++
-        },
-        decrement() {
-            this.count--
-        }
-    }
 })
