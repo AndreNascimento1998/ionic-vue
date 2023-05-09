@@ -38,7 +38,7 @@ import {  reactive } from "vue";
 const itensRenderizado = reactive([
     {
         nome: 'Home',
-        rota: '/lista',
+        rota: '/inicial',
         icon: home,
     },
     {

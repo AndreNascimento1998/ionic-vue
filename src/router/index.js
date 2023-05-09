@@ -32,6 +32,11 @@ const routes = [
                 path: '/bebida',
                 name: 'bebida',
                 component: () => import('@/Views/Cardapio/Pratos/BebidaPage.vue')
+            },
+            {
+                path: '/inicial',
+                name: 'inicial',
+                component: () => import('@/Views/Menu/Initial.vue')
             }
         ]
     },
