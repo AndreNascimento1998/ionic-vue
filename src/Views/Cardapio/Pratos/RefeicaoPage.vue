@@ -1,7 +1,9 @@
 <template>
     <ion-row>
         <ion-col size="10" offset="1">
-            <h2>Pratos de entrada e pratos de refeição</h2>
+            <ion-card-header>
+                    <ion-card-title>Pratos de entrada e pratos de refeição</ion-card-title>
+            </ion-card-header>
             <ion-list>
                 <ion-item v-for="item in refeicao" :key="item.id">
                     <div class="linha">
@@ -16,7 +18,6 @@
                     <h4 class="margem-final">Preço: R$ {{ item.preco.toFixed(2) }}</h4>
                 </ion-item>
             </ion-list>
-            <h2 class="alinhamento-centro">Total: {{ globalStore.carrinho.toFixed(2) }}</h2>
             <ion-button class="alinhamento-direita" size="small" @click="() => router.push('/cardapio')">Voltar</ion-button>
         </ion-col>
     </ion-row>
@@ -76,5 +77,28 @@ async function showMessage(user) {
 .margem-esquerda{
     margin-left: 20px;
     cursor: pointer;
+}
+
+ion-card-header, :host {
+    --background: transparent;
+    --color: white;
+    display: block;
+    position: relative;
+    --background: #201e9c;
+    color: var(--color);
+}
+
+ion-card-title, :host {
+    --color: #ffffff;
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+ion-button, :host(.button-solid) {
+    --background: var(--ion-color-primary, black);
+    --color: var(--ion-color-primary-contrast, #fff);
 }
 </style>

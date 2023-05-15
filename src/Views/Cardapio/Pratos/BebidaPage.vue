@@ -2,8 +2,8 @@
     <ion-row>
         <ion-col size="10" offset="1">
             <ion-card-header>
-                    <ion-card-title>Pratos de entrada e pratos de refeição</ion-card-title>
-                </ion-card-header>
+                    <ion-card-title>Bebidas</ion-card-title>
+            </ion-card-header>
             <ion-list>
                 <ion-item v-for="item in bebida" :key="item.id">
                     <div class="linha">
