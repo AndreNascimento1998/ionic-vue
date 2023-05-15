@@ -5,17 +5,18 @@
             <ion-list>
                 <ion-item v-for="item in refeicao" :key="item.id">
                     <div class="linha">
-                        <ion-img :src="item.src" class="tamanho"/>
-                        <h4 class="margem-esquerda">{{ item.nome }}</h4>
+                        <ion-img :src="item.src" class="tamanho" @click="showMessage(item)"/>
+                        <h4 class="margem-esquerda" @click="showMessage(item)">{{ item.nome }}</h4>
                     </div>
                     <ion-col>
                     </ion-col>
                     <ion-button size="small" @click="adicionar(item)">Adicionar</ion-button>
                     <ion-button class="margem-direita" size="small" @click="remover(item)">Remover</ion-button>
-                    <h5 class="margem-direita">Itens Selecionada: {{ item.qnt }}</h5>
+                    <h5 class="margem-direita">Item Selecionado: {{ item.qnt }}</h5>
                     <h4 class="margem-final">Preço: R$ {{ item.preco.toFixed(2) }}</h4>
                 </ion-item>
             </ion-list>
+            <h2 class="alinhamento-centro">Total: {{ globalStore.carrinho.toFixed(2) }}</h2>
             <ion-button class="alinhamento-direita" size="small" @click="() => router.push('/cardapio')">Voltar</ion-button>
         </ion-col>
     </ion-row>
@@ -24,54 +25,39 @@
 <script setup>
 import router from "@/router";
 import { useGlobal } from "@/stores";
-import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol,IonList, IonImg, IonItem} from '@ionic/vue';
+import { toastController, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol,IonList, IonImg, IonItem} from '@ionic/vue';
 import { computed, ref } from "vue";
-
-let soma = ref(0)
 
 const globalStore = useGlobal()
 
-const refeicao = computed(() => globalStore.refeicao)
+const refeicao = computed(() => globalStore.alimento.refeicao)
 
 function adicionar(item) {
-    soma.value += item.preco
-    globalStore.refeicao.find( refeicao => {
-        if(refeicao.id === item.id){
-            return item.qnt += 1
-        }
-    })
-    console.log(soma.value)
+    globalStore.add(item, globalStore.alimento.refeicao)
 }
 
 function remover(item) {
-    if(item.qnt > 0){
-        soma.value -= item.preco
-        if(soma.value >= 0){
-            console.log(soma.value)
-            globalStore.refeicao.find( refeicao => {
-            if(refeicao.id === item.id){
-                return item.qnt -= 1
-            }
-        })
-        }else {
-            soma.value = 0
-            console.log(soma.value)
-        }
-    }
+    globalStore.remove(item, globalStore.alimento.refeicao)
+}
+
+async function showMessage(user) {
+    const toast = await toastController.create({
+        message: `${user.descricao}`,
+        duration: 4000
+    });
+    toast.present();
 }
 
 </script>
 
-<style>
+<style scoped>
 .alinhamento-centro {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(207, 207, 53);
+    text-align: end;
 }
 
 .tamanho {
     width: 80px;
+    cursor: pointer;
 }
 
 .linha {
@@ -89,5 +75,6 @@ function remover(item) {
 
 .margem-esquerda{
     margin-left: 20px;
+    cursor: pointer;
 }
 </style>

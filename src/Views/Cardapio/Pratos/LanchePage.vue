@@ -1,36 +1,20 @@
 <template>
     <ion-row>
         <ion-col size="10" offset="1">
-            <h2>Lanches</h2>
+            <h2>Pratos de entrada e pratos de refeição</h2>
             <ion-list>
-                <ion-item >
+                <ion-item v-for="item in lanche" :key="item.id">
                     <div class="linha">
-                        <ion-img src="https://conteudo.imguol.com.br/c/entretenimento/a0/2018/02/26/batata-frita-1519671488107_v2_4x3.jpg" class="tamanho"/>
-                        <h4 class="margem-esquerda">Batata Frita</h4>
+                        <ion-img :src="item.src" class="tamanho" @click="showMessage(item)"/>
+                        <h4 class="margem-esquerda" @click="showMessage(item)">{{ item.nome }}</h4>
                     </div>
+                    <ion-col>
+                    </ion-col>
+                    <ion-button size="small" @click="adicionar(item)">Adicionar</ion-button>
+                    <ion-button class="margem-direita" size="small" @click="remover(item)">Remover</ion-button>
+                    <h5 class="margem-direita">Item Selecionado: {{ item.qnt }}</h5>
+                    <h4 class="margem-final">Preço: R$ {{ item.preco.toFixed(2) }}</h4>
                 </ion-item>
-                
-                <ion-item >
-                    <div class="linha">
-                        <ion-img src="https://img.cybercook.com.br/imagens/receitas/789/pizza-brotinho-de-pizzaria.jpg" class="tamanho"/>
-                        <h4 class="margem-esquerda">Brotinho</h4>
-                    </div>
-                </ion-item>
-
-                <ion-item >
-                    <div class="linha">
-                        <ion-img src="https://www.receiteria.com.br/wp-content/uploads/pamonha-doce-de-milho-01.jpg" class="tamanho"/>
-                        <h4 class="margem-esquerda">Pamonha</h4>
-                    </div>
-                </ion-item>
-
-                <ion-item >
-                    <div class="linha">
-                        <ion-img src="https://receitinhas.com.br/wp-content/uploads/2017/12/coxinha-de-frango-com-queijo.jpg" class="tamanho"/>
-                        <h4 class="margem-esquerda">Coxinha</h4>
-                    </div>
-                </ion-item>
-
             </ion-list>
             <ion-button class="alinhamento-direita" size="small" @click="() => router.push('/cardapio')">Voltar</ion-button>
         </ion-col>
@@ -39,20 +23,40 @@
 
 <script setup>
 import router from "@/router";
-import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol,IonList, IonImg, IonItem} from '@ionic/vue';
+import { useGlobal } from "@/stores";
+import { toastController, IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol,IonList, IonImg, IonItem} from '@ionic/vue';
+import { computed, ref } from "vue";
+
+const globalStore = useGlobal()
+
+const lanche = computed(() => globalStore.alimento.lanche)
+
+function adicionar(item) {
+    globalStore.add(item, globalStore.alimento.lanche)
+}
+
+function remover(item) {
+    globalStore.remove(item, globalStore.alimento.lanche)
+}
+
+async function showMessage(user) {
+    const toast = await toastController.create({
+        message: `${user.descricao}`,
+        duration: 4000
+    });
+    toast.present();
+}
 
 </script>
 
-<style>
+<style scoped>
 .alinhamento-centro {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(207, 207, 53);
+    text-align: end;
 }
 
 .tamanho {
     width: 80px;
+    cursor: pointer;
 }
 
 .linha {
@@ -60,7 +64,16 @@ import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCa
     padding: 8px;
 }
 
+.margem-direita {
+    margin-right: 20px;
+}
+
+.margem-final {
+    align-items: center !important;
+}
+
 .margem-esquerda{
     margin-left: 20px;
+    cursor: pointer;
 }
 </style>

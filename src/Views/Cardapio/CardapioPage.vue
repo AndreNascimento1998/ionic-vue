@@ -2,7 +2,7 @@
     <ion-row>
         <ion-col size="8" offset="2">
             <ion-card class="alinhamento-centro">
-                <ion-card-header>
+                <ion-card-header color="primary">
                     <ion-card-title>Cardápio</ion-card-title>
                     <ion-card-subtitle class="corSubtitle">Escolha os itens, aqui estão as categorias</ion-card-subtitle>
                 </ion-card-header>
@@ -37,6 +37,8 @@
                     </ion-col>
                 </ion-row>
                 <ion-button size="small" @click="() => router.push('/')">Voltar</ion-button>
+                <ion-button size="small" @click="limpaCarrinho()">Limpar Carrinho</ion-button>
+                <ion-button size="small" @click="(() => router.push('/carrinho'))">Ver carrinho</ion-button>
             </ion-card>
         </ion-col>
     </ion-row>
@@ -44,7 +46,33 @@
 
 <script setup>
 import router from '@/router';
+import { useGlobal } from '@/stores';
 import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonRow, IonCol } from '@ionic/vue';
+
+const globalStore = useGlobal()
+
+function limpaCarrinho() {
+    globalStore.alimento.bebida.forEach(item => {
+        item.qnt = 0
+    })
+    globalStore.alimento.lanche.forEach(item => {
+        item.qnt = 0
+    })
+    globalStore.alimento.refeicao.forEach(item => {
+        item.qnt = 0
+    })
+    globalStore.alimento.sobremesa.forEach(item => {
+        item.qnt = 0
+    })
+
+    globalStore.carrinhoCompras = []
+    if(!globalStore.promocaoUsada){
+        globalStore.carrinho = globalStore.totalPromocao
+    }else {
+        globalStore.carrinho = 0
+    }
+    
+}
 
 </script>
 
@@ -53,10 +81,10 @@ import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCa
     text-align: center;
     justify-content: center;
     align-items: center;
-    background-color: rgb(108, 144, 211);
 }
 
-.corSubtitle {
-    color: white !important;
+ion-button, :host(.button-solid) {
+    --background: var(--ion-color-primary, black);
+    --color: var(--ion-color-primary-contrast, #fff);
 }
 </style>
