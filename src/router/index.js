@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: () => import('@/Views/Menu/Menu.vue'),
         meta: { requiresAuth: true },
@@ -34,9 +34,14 @@ const routes = [
                 component: () => import('@/Views/Cardapio/Pratos/BebidaPage.vue')
             },
             {
-                path: '/inicial',
+                path: '/',
                 name: 'inicial',
                 component: () => import('@/Views/Menu/Initial.vue')
+            },
+            {
+                path: '/carrinho',
+                name: 'carrinho',
+                component: () => import('@/Views/Carrinho/CarrinhoPage.vue')
             }
         ]
     },
