@@ -1,4 +1,10 @@
-# projeto-desenvolvimento
+# Projeto restaurante (Ionic & VueJs)
+
+## Imagens
+
+<img src="src/assets/inicio.png">
+<img src="src/assets/cardapio.png">
+<img src="src/assets/promocao.png">
 
 ## Project setup
 ```
