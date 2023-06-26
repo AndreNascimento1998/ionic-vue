@@ -1,8 +1,8 @@
 # Projeto restaurante (Ionic & VueJs)
 
-## Imagens
+## Images
 
-<img src="src/assets/inicio.png">
+<img src="src/assets/inico.png">
 <img src="src/assets/cardapio.png">
 <img src="src/assets/promocao.png">
 
